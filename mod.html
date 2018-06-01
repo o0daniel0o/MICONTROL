@@ -94,11 +94,20 @@
   
 
   <section class="section">
-    <h3 class="subtitle"> CATALOGO DE MODELOS </h2>
+
+<h3 class="subtitle"> CATALOGO DE MODELOS </h2>
+
+
+          
 
     <div id="movieContainer">
       
     </div>
+
+               
+
+
+
 
   </section>
 
@@ -123,6 +132,9 @@
       // inicializamos un template para insertar las peliculas
       var movieTemplate = "";
       // Iteramos sobre las llaves del objeto obtenidas
+
+      
+
       for (var i = 0; i < objectKeys.length; i++) {
         // Obtenemos los datos con las llaves obtenidas de cada elemento del objeto (peliculas)
         var movieName = totalMovies[objectKeys[i]].name;
@@ -130,23 +142,38 @@
         var movieCategory = totalMovies[objectKeys[i]].category;
         // Vamos preparando el template por cada pelicula
         // y sobreescribiendo la variable movieTemplate
-        // para que tenga cada una de las peliculas
-        movieTemplate = movieTemplate + `<div>  
-          <div class="nameMovie">
+        // para que tenga cada una de las peliculas4
+
+
+
+
+        
+
+        movieTemplate = movieTemplate + `<tr> 
+       
+          <td  class="nameMovie">
             ${movieName}
-          </div>
-          <div class="imageMovie">
+          </td>
+          <td class="imageMovie">
             <img src="${movieImage}">
-          </div>
-          <div class="categoryMovie">
+          </td>
+          <td class="categoryMovie">
             ${movieCategory}
-          </div>
-          
-        <div>`
+          </td>
+         
+        <tr>`
+
+
         console.log(movieName, movieImage, movieCategory);
       }
+      
+
       // Insertamos el template con todas las peliculas en el div correspondiente
-      document.getElementById("movieContainer").innerHTML =movieTemplate ;
+      document.getElementById("movieContainer").innerHTML = '<div class="table-responsive"><table class="table"><table class="table table-dark">  <thead>    <tr>      <th scope="col">CODIGO DE MODELO</th>      <th scope="col">IMAGEN DEL MODELO</th>      <th scope="col">DESCRIPCION DEL MODELO</th>     </tr>  </thead>  <tbody>'+
+movieTemplate + '</tbody></table></table></div>';
+        
+
+
     });
     // Agregamos logica al evento de click en el elemento button
     document.getElementById("buttonSend").onclick = function () {
@@ -166,7 +193,6 @@
       movieCategory = "";
     }
   </script>
-  
 
 
 
