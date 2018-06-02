@@ -103,6 +103,13 @@
   <input id="movieImage" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
 </div>
 
+<div class="input-group input-group-sm mb-3">
+  <div class="input-group-prepend">
+    <span  class="input-group-text" id="inputGroup-sizing-sm">PRECIO</span>
+  </div>
+  <input id="moviePrecio" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+</div>
+
 <div class="input-group mb-3">
   <DIV class='center'> <button id="buttonSend" type="button" class="btn btn-primary btn-lg btn-block">GRABAR NUEVO MODELO</button></DIV>
  
@@ -146,6 +153,7 @@
         var movieName = totalMovies[objectKeys[i]].name;
         var movieImage = totalMovies[objectKeys[i]].image;
         var movieCategory = totalMovies[objectKeys[i]].category;
+        var moviePrecio = totalMovies[objectKeys[i]].precio;
         // Vamos preparando el template por cada pelicula
         // y sobreescribiendo la variable movieTemplate
         // para que tenga cada una de las peliculas4
@@ -166,16 +174,18 @@
           <td class="categoryMovie">
             ${movieCategory}
           </td>
-         
+         <td class="precioyMovie">
+            ${moviePrecio}
+          </td>
         <tr>`
 
 
-        console.log(movieName, movieImage, movieCategory);
+        console.log(movieName, movieImage, movieCategory,moviePrecio);
       }
       
 
       // Insertamos el template con todas las peliculas en el div correspondiente
-      document.getElementById("movieContainer").innerHTML = '<div class="table-responsive"><table class="table"><table class="table table-dark">  <thead>    <tr>      <th scope="col">CODIGO</th>      <th scope="col">IMAGEN</th>      <th scope="col">DESCRIPCION DEL MODELO</th>     </tr>  </thead>  <tbody>'+
+      document.getElementById("movieContainer").innerHTML = '<div class="table-responsive"><table class="table"><table class="table table-dark">  <thead>    <tr>      <th scope="col">CODIGO</th>      <th scope="col">IMAGEN</th>      <th scope="col">DESCRIPCION DEL MODELO</th> <th scope="col">PRECIO SIN IGV</th>    </tr>  </thead>  <tbody>'+
 movieTemplate + '</tbody></table></table></div>';
         
 
@@ -187,16 +197,19 @@ movieTemplate + '</tbody></table></table></div>';
       var movieName = document.getElementById("movieName").value;
       var movieCategory = document.getElementById("movieCategory").value;
       var movieImage = document.getElementById("movieImage").value;
+      var moviePrecio = document.getElementById("moviePrecio").value;
       // Escribimos en nuestra base de datos con la funcion PUSH
       database.ref('movies/').push({
         category: movieCategory,
         name: movieName,
-        image: movieImage
+        image: movieImage,
+        precio: moviePrecio
       });
       // Resetamos los inputs para que queden en blanco despues de enviarlos
       movieName = "";
       movieImage = "";
       movieCategory = "";
+      moviePrecio = "";
     }
   </script>
 
